@@ -1,0 +1,6 @@
+
+ JOY-IT Speedsensor LM393 mit Lochscheibe:  6x
+ Lineracker                                 2x
+ Ultraschall                                4x
+ LEDs                                       3x
+ Schalter                                   4x

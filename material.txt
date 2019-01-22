@@ -1,28 +1,28 @@
  Gehäuse/Fahrwerk:
-	Achsen vorne																														 2x
-	Achsen hinten																														2x
-	Reifen																																					6x
-	Verbindungsstücke Achsen	--> Achsen								2x
-	Verbindungsstücke Achsen	--> Gehäuse							2x
-	Differential																															1x
-	Getriebe																																			6x
-	Gehäuse/Chasis																													1x
+	Achsen vorne																			 2x
+	Achsen hinten																			 2x
+	Reifen																						 6x
+	Verbindungsstücke Achsen	--> Achsen							 2x
+	Verbindungsstücke Achsen	--> Gehäuse							 2x
+	Differential																			 1x
+	Getriebe																					 6x
+	Gehäuse/Chasis																		 1x
 	
 	
 	
 	Elektronik:
-	Motoren																																				6x
-	16850 Rundzellen																											4x
-	Raspberry Pi																													  2x
-	Kamera                                     1x
-	LEDs                                       3x
-	Tast-Schalter                       			    4x
- Drehcodierschalter                         1x
-			Platine:																																				1x
-				H-Bridge																																						4x
-				DC/DC-Wandler																																	1x
-				Gyroskop																																						1x	
+	Motoren																						 6x
+	16850 Rundzellen																	 4x
+	Raspberry Pi																			 2x
+	Kamera                                             1x
+	LEDs                                               3x
+	Tast-Schalter                       			         4x
+  Drehcodierschalter                                 1x
+			Platine:																			    	1x
+				H-Bridge																					4x
+				DC/DC-Wandler																			1x
+				Gyroskop																					1x	
 			Sensoren:
-				JOY-IT Speedsensor LM393 mit Lochscheibe:  6x
-				Lineracker                                 2x
- 			Ultraschall-Sensor																									4x
+				JOY-IT Speedsensor LM393 mit Lochscheibe:         6x
+				Lineracker                                        2x
+ 			Ultraschall-Sensor																	4x

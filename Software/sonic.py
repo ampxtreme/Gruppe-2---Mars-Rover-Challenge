@@ -5,7 +5,6 @@ import time
 import RPi.GPIO as GPIO
 
 def read(pos):
-    globals debug conf
     if pos == "L":
        helper.sensorswitch(conf.addrSonicL)
     if pos == "M":

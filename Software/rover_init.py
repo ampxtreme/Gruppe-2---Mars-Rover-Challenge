@@ -11,7 +11,7 @@ import math;
 GPIO.setmode(GPIO.BCM)
 
 int start_stop = 0
-int programmwahl = 0
+programmwahl = 0
 
 
 
@@ -22,8 +22,8 @@ GPIO.setup(conf.intLED, GPIO.OUT)
 
 GPIO.output(conf.intLED, True)
 
-int progDigit1=0;
-int progDigit2=0;
+progDigit1=0;
+progDigit2=0;
 
 while (start_stop == 0):
 
@@ -50,8 +50,12 @@ while (start_stop == 0):
             GPIO.output(conf.programmLED4);
 
 
-    if (GPIO.input(conf.tasterRun)==true and start_stop == 1):
+    if GPIO.input(conf.tasterRun)==True and start_stop == 1:
         start_stop==0;
         programmwahl=0;
         progDigit1=0;
         progDigit2=0;
+        GPIO.output(conf.programmLED1, False);
+        GPIO.output(conf.programmLED2, False);
+        GPIO.output(conf.programmLED3, False);
+        GPIO.output(conf.programmLED4, False);

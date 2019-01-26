@@ -5,6 +5,7 @@ import time
 import RPi.GPIO as GPIO
 
 def read(pos):
+
     if pos == "L":
        helper.sensorswitch(conf.addrSonicL)
     if pos == "M":
@@ -36,6 +37,6 @@ def read(pos):
        dist = (SignalLaufzeit / 2) * 34350
 
 
-    if debug:
+    if conf.debug:
         print("Sonic {} Read: {] cm", format(pos, dist))
     return dist

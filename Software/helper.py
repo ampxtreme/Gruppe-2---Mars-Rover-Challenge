@@ -3,11 +3,11 @@ import RPi.GPIO as GPIO
 import conf
 
 def sensorswitch(addr):
-    globals debug
+
     GPIO.output(conf.programmLED1, addr[0])
     GPIO.output(conf.programmLED1, addr[1])
     GPIO.output(conf.programmLED1, addr[2])
-    if debug:
+    if conf.debug:
         print("senorSwitch: addr {}", format(addr))
 
 def initSensorSwitch(){

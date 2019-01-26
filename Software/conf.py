@@ -1,6 +1,6 @@
 # Config Modul
 
-debug=true
+debug=True
 
 #LEDs
 intLED = 1
@@ -30,3 +30,5 @@ addrSonicR=(1, 1, 1)
 
 #Bildverabeitun
 camCropLT=(180, 220, 100, 240)
+camColorLB = (12,100,100)
+camColorUB = (32,255,255)

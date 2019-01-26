@@ -1,5 +1,14 @@
 # Config Modul
 
-int powerLED = 1;
-int programmLED1=2;
-int programmLED2=2;
+//LEDs
+int intLED = 1;
+int programmLED1=21;
+int programmLED2=20;
+int programmLED3=16;
+int programmLED4=26;
+
+
+//Taster
+int tasterDig1=19;
+int tasterDig2=13;
+int tasterRun=6;

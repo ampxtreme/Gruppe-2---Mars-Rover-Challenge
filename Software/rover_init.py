@@ -5,33 +5,53 @@ import RPi.GPIO as GPIO
 
 import T1
 import T2
+import conf;
+import math;
 
 GPIO.setmode(GPIO.BCM)
 
-start_stop = 0
-programmwahl = None
+int start_stop = 0
+int programmwahl = 0
 
-taster_start = 1
-taster_programmwahl = 2
-led_initfertig = 3
 
-GPIO.setup(taster_start, GPIO.IN)
-GPIO.setup(taster_programmwahl, GPIO.IN)
-GPIO.setup(led_initfertig, GPIO.OUT)
 
-GPIO.output(led_initfertig, True)
+GPIO.setup(conf.tasterRun, GPIO.IN)
+GPIO.setup(conf.tasterDig1, GPIO.IN)
+GPIO.setup(conf.tasterDig2, GPIO.IN)
+GPIO.setup(conf.intLED, GPIO.OUT)
+
+GPIO.output(conf.intLED, True)
+
+int progDigit1=0;
+int progDigit2=0;
 
 while (start_stop == 0):
 
-    if GPIO.input(taster_programmwahl) == False:
-        programmwahl = 1
-    else:
-        programmwahl = 0
+    // Programm Code lesen
+    if GPIO.input(conf.tasterDig1):
+        progDigit1=1;
+    if GPIO.input(conf.tasterDig2):
+        progDigit2=1;
+    if GPIO.input(conf.tasterRun) and start_stop==0:
+        start_stop==1;
+        programmwahl=progDigit1**0 + progDigit2**1
 
-    if GPIO.input(taster_start) == False:
-        start_stop = 1
+        //Start Programm
+        if programmwahl==1:
+            GPIO.output(conf.programmLED1);
+
+        if programmwahl == 2:
+            GPIO.output(conf.programmLED2);
+
+        if programmwahl == 3
+            GPIO.output(conf.programmLED3;
+
+        if programmwahl == 4:
+            GPIO.output(conf.programmLED4);
 
 
-
-
-
+    if (GPIO.input(conf.tasterRun)==true and start_stop == 1):
+        start_stop==0;
+        programmwahl=0;
+        progDigit1=0;
+        progDigit2=0;

@@ -1,14 +1,15 @@
 # Config Modul
 
-//LEDs
-int intLED = 1;
-int programmLED1=21;
-int programmLED2=20;
-int programmLED3=16;
-int programmLED4=26;
+#LEDs
+intLED = 1
+programmLED1=21
+programmLED2=20
+programmLED3=16
+programmLED4=26
 
 
-//Taster
-int tasterDig1=19;
-int tasterDig2=13;
-int tasterRun=6;
+#Taster
+tasterDig1=19
+tasterDig2=13
+tasterStop=5
+tasterRun=6

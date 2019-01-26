@@ -10,7 +10,7 @@ def init():
     GPIO.output(18, GPIO.HIGH);
     return;
 
-def exit():
+def Texit():
     GPIO.output(18, GPIO.LOW);
     return;
 

@@ -7,12 +7,9 @@ import RPi.GPIO as GPIO
 #import T2
 import conf
 import math
+import helper
 
 GPIO.setmode(GPIO.BCM)
-
-programmwahl = 0
-
-
 
 GPIO.setup(conf.tasterRun, GPIO.IN)
 GPIO.setup(conf.tasterStop, GPIO.IN)
@@ -23,11 +20,12 @@ GPIO.setup(conf.programmLED1, GPIO.OUT)
 GPIO.setup(conf.programmLED2, GPIO.OUT)
 GPIO.setup(conf.programmLED3, GPIO.OUT)
 GPIO.setup(conf.programmLED4, GPIO.OUT)
-
+helper.initSensorSwitch()
 GPIO.output(conf.intLED, True)
 
 progDigit1=0
 progDigit2=0
+programmwahl = 0
 
 while (True):
     try:
@@ -38,21 +36,20 @@ while (True):
         if GPIO.input(conf.tasterDig2):
             progDigit2=1
         if GPIO.input(conf.tasterRun):
-            
             programmwahl=progDigit1*math.pow(2,0) + progDigit2*math.pow(2,1)+1
 
-            #Start Programm
-            if programmwahl==1:
-                GPIO.output(conf.programmLED1, True)
+        #Start Programm
+        if programmwahl==1:
+            GPIO.output(conf.programmLED1, True)
 
-            if programmwahl == 2:
-                GPIO.output(conf.programmLED2, True)
+        if programmwahl == 2:
+            GPIO.output(conf.programmLED2, True)
 
-            if programmwahl == 3:
-                GPIO.output(conf.programmLED3, True)
+        if programmwahl == 3:
+            GPIO.output(conf.programmLED3, True)
 
-            if programmwahl == 4:
-                GPIO.output(conf.programmLED4, True)
+        if programmwahl == 4:
+            GPIO.output(conf.programmLED4, True)
        
 
         if GPIO.input(conf.tasterStop):

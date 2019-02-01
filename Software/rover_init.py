@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 
 #import T1
 #import T2
+import t3
 import t4
 import conf
 import math
@@ -48,6 +49,7 @@ while (True):
 
         if programmwahl == 3:
             GPIO.output(conf.programmLED3, True)
+            t3.start()
 
         if programmwahl == 4:
             GPIO.output(conf.programmLED4, True)

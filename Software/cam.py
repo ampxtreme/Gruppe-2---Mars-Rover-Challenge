@@ -41,7 +41,7 @@ def lineDetection():
         cv2.line(img,(cx,0),(cx,720),(255,0,0),1)
         cv2.line(img,(0,cy),(1280,cy),(255,0,0),1)
         cv2.drawContours(img, contours, -1, (0,255,0), 1)
-        cdiff = 70-cx
+        cdiff = int(cx-70)
         linecoord = [cx,cy,cdiff]
 
         if conf.debug:

@@ -11,7 +11,7 @@ def init():
     return
 
 def Texit():
-    GPIO.output(18, GPIO.LOW);
+    GPIO.output(18, GPIO.LOW)
     return
 
 

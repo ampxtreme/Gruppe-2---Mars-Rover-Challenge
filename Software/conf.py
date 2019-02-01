@@ -21,8 +21,8 @@ tasterRun=6
 swSwitchGPIO1=1
 swSwitchGPIO2=2
 swSwitchGPIO3=3
-swSwitchRead=4
-swSwitchWrite=5
+swSwitchRead=23
+swSwitchWrite=24
 
 addrSonicL=(1, 0, 0)
 addrSonicR=(1, 1, 1)
@@ -32,3 +32,4 @@ addrSonicR=(1, 1, 1)
 camCropLT=(180, 220, 100, 240)
 camColorLB = (12,100,100)
 camColorUB = (32,255,255)
+camDistance = 15

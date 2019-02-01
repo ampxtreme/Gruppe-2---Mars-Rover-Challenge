@@ -88,7 +88,3 @@ def objectDetection():
         print("ObjectDetection:{}".format(obstacles))
 
     return obstacles
-
-
-print(lineDetection())
-print(objectDetection())

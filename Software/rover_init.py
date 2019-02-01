@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 
 #import T1
 #import T2
+import t4
 import conf
 import math
 import helper
@@ -50,6 +51,7 @@ while (True):
 
         if programmwahl == 4:
             GPIO.output(conf.programmLED4, True)
+            t4.start()
        
 
         if GPIO.input(conf.tasterStop):

@@ -33,3 +33,7 @@ camCropLT=(180, 220, 100, 240)
 camColorLB = (12,100,100)
 camColorUB = (32,255,255)
 camDistance = 15
+
+
+#I2C Adresses
+addrGyro=0x68  # via i2cdetect

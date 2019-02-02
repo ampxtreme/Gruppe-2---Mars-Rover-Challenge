@@ -2,11 +2,14 @@
 import sonic
 import conf
 import cam
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(conf.tasterStop, GPIO.IN)
 
 def start():
     #init()
-    
-    while True:
+    while GPIO.input(conf.tasterStop) == False:
         while sonic.read("test") >= conf.camDistance:
             print("geradeaus")
             

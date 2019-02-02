@@ -1,14 +1,18 @@
+#Rover XYZ Software V1.0
+#by HoT - Home of Tomorrow | project at FH Kufstein
+#2019
+
 import time
 import sys
 import os
 import RPi.GPIO as GPIO
+import math
 
-#import T1
-#import T2
+import t1
+import t2
 import t3
 import t4
 import conf
-import math
 import helper
 
 GPIO.setmode(GPIO.BCM)
@@ -31,7 +35,6 @@ programmwahl = 0
 
 while (True):
     try:
-
         # Programm Code lesen
         if GPIO.input(conf.tasterDig1):
             progDigit1=1

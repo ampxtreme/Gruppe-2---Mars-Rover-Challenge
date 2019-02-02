@@ -1,4 +1,4 @@
-#Track1: Ramp module
+#Track2: Bridge
 import conf
 import RPi.GPIO as GPIO
 
@@ -11,13 +11,15 @@ def start():
         pass
     return True
 
+
 def init():
     GPIO.setup(18, GPIO.OUT)
     GPIO.output(18, GPIO.HIGH)
-    return True
+    return
 
 def Texit():
     GPIO.output(18, GPIO.LOW)
     return
+
 
 

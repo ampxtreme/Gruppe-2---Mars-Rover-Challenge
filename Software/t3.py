@@ -1,6 +1,7 @@
 #Track3: Let it rain
 import conf
 import cam
+import RPi.GPIO as GPIO
 from simple_pid import PID
 
 Kp = 1
@@ -10,9 +11,12 @@ setpoint = 1
 
 pid = PID(Kp, Ki, Kd, setpoint)
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(conf.tasterStop, GPIO.IN)
+
 def start():
       
-    while True:
+    while GPIO.input(conf.tasterStop) == False:
         line = cam.lineDetection()
         try:
             difference = int(line[2])

@@ -106,8 +106,12 @@ camColorLB = (12,100,100)
 camColorUB = (32,255,255)
 camDistance = 15
 
+#linehold
+lineL = 5
+lineR = 6
+
 #free GPIO
-#5-7
+#7
 #24
 
 pwm0=23

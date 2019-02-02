@@ -1,6 +1,7 @@
 import conf
 import time
 import smbus
+import RPi.GPIO as GPIO
 
 
 # [motor1P, motor1Rot, motor1Speed1, motor1Speed2],

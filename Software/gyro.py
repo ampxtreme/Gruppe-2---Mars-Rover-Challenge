@@ -1,6 +1,6 @@
 # Gyro Module
 # basierend auf #Quellle: https://tutorials-raspberrypi.com/measuring-rotation-and-acceleration-raspberry-pi/
-import smbus
+import smbus2
 import math
 import conf
 # Register
@@ -8,7 +8,7 @@ power_mgmt_1 = 0x6b
 power_mgmt_2 = 0x6c # Vermuteter Ausschalter füws mgmnt
 
 
-BUS=smbus.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
+BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
 bus=BUS
 
 def powerOn():

@@ -1,20 +1,25 @@
 #Linehold Sensor Module
 import conf
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(conf.lineVL, GPIO.IN)
+GPIO.setup(conf.lineVR, GPIO.IN)
+
+
 def line():
-    linearray = [0, 0]
+    linearrayV = [0, 0]
     
-    if conf.lineL == True:
-        linearray[0] = 1
+    if GPIO.input(conf.lineVL) == True:
+        linearrayV[0] = 1
     else:
-        linearray[0] = 0
+        linearrayV[0] = 0
         
-    if conf.lineR == True:
-        linearray[1] = 1
+    if GPIO.input(conf.lineVR) == True:
+        linearrayV[1] = 1
     else:
-        linearray[1] = 0
+        linearrayV[1] = 0
     
     if conf.debug:
-        print("LineL: {} LineR: {} ".format(linearray[0], linearray[1]))
+        print("LineL: {} LineR: {} ".format(linearrayV[0], linearrayV[1]))
     
-    return linearray
+    return linearrayV

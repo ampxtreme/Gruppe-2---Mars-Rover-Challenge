@@ -4,15 +4,18 @@ import conf
 import time
 import RPi.GPIO as GPIO
 
-def read(pos):
-
+def readDist(pos):
+        
     if pos != "test":
         if pos == "L":
            helper.sensorswitch(conf.addrSonicL)
+           
         if pos == "M":
            helper.sensorswitch(conf.addrSonicM)
+           
         if pos == "R":
            helper.sensorswitch(conf.addrSonicR)
+
     else:
         helper.initSensorSwitch()
 
@@ -38,9 +41,36 @@ def read(pos):
     # Formel: /Signallaufzeit in Sekunden * Schallgeschwindigket in cm/s) / 2 (wg. Hin- und Rückweg des Signals)
     SignalLaufzeit = StopZeit - StartZeit
     dist = round((SignalLaufzeit / 2) * 34350, 2)
-
-
+    
     if conf.debug:
         print("Sonic {} Read: {} cm".format(pos, str(dist)))
     
     return dist
+
+
+
+def read(pos):
+    maxdist = 0
+    status = 0
+    distance = readDist(pos)
+    
+    if pos == "L":
+        maxdist = conf.maxdistL
+           
+    if pos == "M":
+        maxdist = conf.maxdistM
+           
+    if pos == "R":
+        maxdist = conf.maxdistR
+           
+
+    if distance > maxdist:
+        status = 0
+    
+    if distance <= maxdist:
+        status = 1
+
+    if conf.debug:
+        print("Sonic {} Read: {} cm".format(pos, str(dist)))
+    
+    return status

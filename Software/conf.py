@@ -107,15 +107,16 @@ camColorUB = (32,255,255)
 camDistance = 15
 
 #linehold
-lineL = 5
-lineR = 6
+lineVL = 5
+lineVR = 6
+
+#sonic
+maxdistL = 50
+maxdistM = 40
+maxDistR = 50
 
 #free GPIO
-#7
-#24
-
-pwm0=23
-pwm1=26
+#7,24
 
 #serial com 
 serialTX=15

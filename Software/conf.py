@@ -1,7 +1,7 @@
 # Config Modul 02.02. 11:00
 
 debug=True
-pcb=False # PCB Ports
+pcb=False # PCB vorhanden
 
 #LEDs solllen über I1c
 intLED = 1
@@ -54,11 +54,21 @@ motor5Rot=(0x20, 1, 4)# rotation direction
 motor5Speed1=(0x21, 0, 4)# 4 Stufen
 motor5Speed2=(0x21, 0, 5)# 4 Stufen
 
-motor6p=(0x20, 0, 5)
+motor6P=(0x20, 0, 5)
 motor6Rot=(0x20, 1, 5)# rotation direction
 motor6Speed1=(0x21, 0, 6)# 4 Stufen
 motor6Speed2=(0x21, 0, 7)# 4 Stufen
-
+motors=[
+    [motor1P, motor1Rot, motor1Speed1, motor1Speed2],
+    [motor2P, motor2Rot, motor2Speed1, motor2Speed2],
+    [motor3P, motor3Rot, motor3Speed1, motor3Speed2],
+    [motor4P, motor4Rot, motor4Speed1, motor4Speed2],
+    [motor5P, motor5Rot, motor5Speed1, motor5Speed2],
+    [motor6P, motor6Rot, motor6Speed1, motor6Speed2],
+    [motor6P, motor6Rot, motor6Speed1, motor6Speed2]
+    ]
+pwm1=23
+pwm0=26
 
 
 #Taster
@@ -100,8 +110,8 @@ camDistance = 15
 #5-7
 #24
 
-pwm1=23
-pwm0=26
+pwm0=23
+pwm1=26
 
 #serial com 
 serialTX=15

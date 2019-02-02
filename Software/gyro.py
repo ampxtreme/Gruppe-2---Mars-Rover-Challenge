@@ -6,8 +6,10 @@ import conf
 # Register
 power_mgmt_1 = 0x6b
 power_mgmt_2 = 0x6c # Vermuteter Ausschalter füws mgmnt
-bus = None
 
+
+BUS=smbus.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
+bus=BUS
 
 def powerOn():
     bus.write_byte_data(conf.addrGyro, power_mgmt_1, 0)
@@ -48,8 +50,6 @@ def get_x_rotation(x, y, z):
     return math.degrees(radians)
 
 def init():
-    global bus
-    bus = smbus.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
     powerOn()
 
 def getXYZ():
@@ -69,4 +69,3 @@ def getRotation():
         print("Gyro getRotation: {} / {} / {}".format(xout, yout, zout))
     return (xout, yout, zout)
 
-init()#

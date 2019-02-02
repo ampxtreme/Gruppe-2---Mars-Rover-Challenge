@@ -14,6 +14,7 @@ import t3
 import t4
 import conf
 import helper
+import drive
 
 GPIO.setmode(GPIO.BCM)
 
@@ -26,7 +27,9 @@ GPIO.setup(conf.programmLED1, GPIO.OUT)
 GPIO.setup(conf.programmLED2, GPIO.OUT)
 GPIO.setup(conf.programmLED3, GPIO.OUT)
 GPIO.setup(conf.programmLED4, GPIO.OUT)
+drive.init()
 helper.initSensorSwitch()
+
 GPIO.output(conf.intLED, True)
 
 progDigit1=0
@@ -46,6 +49,7 @@ while (True):
         #Start Programm
         if programmwahl==1:
             GPIO.output(conf.programmLED1, True)
+            t1.start()
 
         if programmwahl == 2:
             GPIO.output(conf.programmLED2, True)
@@ -65,6 +69,7 @@ while (True):
             GPIO.output(conf.programmLED2, False)
             GPIO.output(conf.programmLED3, False)
             GPIO.output(conf.programmLED4, False)
+            drive.stop()
             print("PROGRAMM EXIT")
             time.sleep(1)
             
@@ -79,6 +84,7 @@ while (True):
         programmwahl=0
         progDigit1=0
         progDigit2=0
+        drive.stop()
         GPIO.output(conf.programmLED1, False)
         GPIO.output(conf.programmLED2, False)
         GPIO.output(conf.programmLED3, False)

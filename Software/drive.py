@@ -27,13 +27,20 @@ def init():
 
 def test():
     for m in range(0, 3):
-        for speed in  range(1, 3):
+        for speed in range(1, 3):
             setMotor(m, speed, 1)
             time.sleep(1)
         setMotor(m, 0, 0)
 
-def testpw():
-    return
+def testpwm(speed=3):
+    drive("R", 0, speed)
+    drive("L", 0, speed)
+    for i in range(0, 100):
+        PWMR.ChangeDutyCycle(i)
+        PWML.ChangeDutyCycle(i)
+        time.sleep(0.2)
+        print("{} on Lvl {}".format(i, SpeedLevel))
+
 
 def speed(s):
 
@@ -45,7 +52,7 @@ def speed(s):
         return (1, 1)
     return (0, 0)
 
-def setSpeedLevel(motor,level):
+def setSpeedLevel(motor, level):
     intspeed = speed(level)
     BUS.write_byte_data(hex(conf.motors[m][2][0]), conf.motors[m][0][1], hex(intspeed[0]))  # speed1
     BUS.write_byte_data(hex(conf.motors[m][3][0]), conf.motors[m][0][1], hex(intspeed[1]))  # speed2
@@ -63,12 +70,17 @@ def drive(seite, dutyCycle=100, PowerLvl=3, richtung=1):
     else:
         PWML.ChangeDutyCycle(dutyCycle)
 
-    for m range(mstart,mstart+3):
+    for m  in range(mstart,mstart+3):
         setSpeedLevel(m,PowerLvl)
         BUS.write_byte_data(hex(conf.motors[m][1][0]), conf.motors[m][1][1], Hex(richtung))
 
     if conf.debug:
-        print("Drive {} {} {} {}".format(seite,dutyCycle,PowerLvl,richtung))
+        print("Drive {} {} {} {}".format(seite, dutyCycle, PowerLvl, richtung))
 
 
 
+def stop():
+    for m in range(0,5):
+        setSpeedLevel(m,0)
+    if conf.debug:
+        print("Drive: stop")

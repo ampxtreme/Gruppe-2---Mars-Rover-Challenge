@@ -12,10 +12,10 @@ BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
 bus=BUS
 
 def powerOn():
-    bus.write_byte_data(conf.addrGyro, power_mgmt_1, 0)
+    return bus.write_byte_data(conf.addrGyro, power_mgmt_1, 0)
 
 def powerOff():
-    bus.write_byte_data(conf.addrGyro, power_mgmt_2, 0)
+    return bus.write_byte_data(conf.addrGyro, power_mgmt_2, 0)
 
 def read_byte(reg):
     return bus.read_byte_data(conf.addrGyro, reg)
@@ -50,7 +50,9 @@ def get_x_rotation(x, y, z):
     return math.degrees(radians)
 
 def init():
-    powerOn()
+    res=powerOn()
+    if conf.debug
+        print("Cyro init: {}".format(res))
 
 def getXYZ():
 

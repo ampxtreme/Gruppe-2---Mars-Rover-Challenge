@@ -26,7 +26,7 @@ def init():
 
 
 def test():
-    for m in range(0, 3):
+    for m in range(0, 5):
         for speed in range(1, 3):
             setMotor(m, speed, 1)
             time.sleep(1)

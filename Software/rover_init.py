@@ -20,8 +20,12 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(conf.tasterRun, GPIO.IN)
 GPIO.setup(conf.tasterStop, GPIO.IN)
-GPIO.setup(conf.tasterDig1, GPIO.IN)
-GPIO.setup(conf.tasterDig2, GPIO.IN)
+if conf.pcb==False:
+    GPIO.setup(conf.tasterDig1, GPIO.IN)
+    GPIO.setup(conf.tasterDig2, GPIO.IN)
+else:
+    helper.initRotarySwitch()
+
 GPIO.setup(conf.intLED, GPIO.OUT)
 GPIO.setup(conf.programmLED1, GPIO.OUT)
 GPIO.setup(conf.programmLED2, GPIO.OUT)
@@ -38,13 +42,17 @@ programmwahl = 0
 
 while (True):
     try:
-        # Programm Code lesen
-        if GPIO.input(conf.tasterDig1):
-            progDigit1=1
-        if GPIO.input(conf.tasterDig2):
-            progDigit2=1
-        if GPIO.input(conf.tasterRun):
+        if conf.pcb==False:
+            # Programm Code lesen ohne PCB
+            if GPIO.input(conf.tasterDig1):
+                 progDigit1=1
+            if GPIO.input(conf.tasterDig2):
+                progDigit2=1
+            if GPIO.input(conf.tasterRun):
             programmwahl=progDigit1*math.pow(2,0) + progDigit2*math.pow(2,1)+1
+        else:
+            if GPIO.input(conf.tasterRun):
+                programmwahl=helper.readRotarySwitch()
 
         #Start Programm
         if programmwahl==1:
@@ -84,6 +92,7 @@ while (True):
         programmwahl=0
         progDigit1=0
         progDigit2=0
+        print("Keybord Interrupt")
         drive.stop()
         GPIO.output(conf.programmLED1, False)
         GPIO.output(conf.programmLED2, False)

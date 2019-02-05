@@ -77,7 +77,7 @@ tasterDig2=13
 tasterStop=5  #pcb GPIO 21
 tasterRun=6   #pcb GPIO 22 //vmtl rot
 
-rotaryP1=(0, 0, 0, 0)
+
 rotaryGPIOs=(27, 28, 29, 25) # GPIO READ Ports (klein nach Groß)
 
 

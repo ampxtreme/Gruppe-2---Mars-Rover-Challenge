@@ -13,7 +13,7 @@ GPIO.setup(conf.pwm1, GPIO.OUT)
 PWML = GPIO.PWM(conf.pwm0, 1500)
 PWMR = GPIO.PWM(conf.pwm1, 1500)
 
-BUS=smbus2.SMBus(0)  # bus = smbus.SMBus(0) fuer Revision 1
+BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
 
 #     motor  on 0-5 power0 , power 1 Left
 BANK1=[0, 0, 0, 0, 0, 0, 0, 0]

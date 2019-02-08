@@ -28,7 +28,7 @@ def start():
             #difference = gyronullpunkt - gyro
             #control = pid(difference)
             
-        elif sonicarray == [1, 0, 0] or sonicarray == [0, 0, 1] or sonicarray == [1, 1, 0] or sonicarray == [0, 1, 1]:
+        elif (sonicarray == [1, 0, 0]) or (sonicarray == [0, 0, 1]) or (sonicarray == [1, 1, 0]) or (sonicarray == [0, 1, 1]):
             #stehen bleiben
             correction()
           

@@ -7,11 +7,13 @@ GPIO.setmode(GPIO.BCM)
 import helper
 
 helper.initRotarySwitch()
-
+#GPIO.setup(25, GPIO.IN)#
+#GPIO.setup(27, GPIO.IN)
+#GPIO.setup(28, GPIO.IN)
+#GPIO.setup(29, GPIO.IN)
 while True:
     try:
-
-    print(helper.readRotarySwitch())
+        print(helper.readRotarySwitch())
 
     except KeyboardInterrupt:
         GPIO.cleanup()

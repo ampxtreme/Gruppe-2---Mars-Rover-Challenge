@@ -1,25 +1,13 @@
-import  sys
+import sys
 sys.path.insert(0, '../../')
-import RPi.GPIO as GPIO
-
-GPIO.setmode(GPIO.BCM)
-import conf
 import helper
-import time
+import conf
+import smbus2
+BUS=smbus2.SMBus(1)
 
-helper.initLEDs();
+helper.initLEDs()
+helper.LEDs[2]=1
+helper.updateLED()
+#helper.BUS.write_byte_data(0x21, 0x03, 127)
 
-GPIO.output(conf.programmLED1, True)
-GPIO.output(conf.programmLED2, True)
-GPIO.output(conf.programmLED3, True)
-GPIO.output(conf.programmLED4, True)
-
-GPIO.output(conf.programmLED1, True)
-time.sleep(1)
-GPIO.output(conf.programmLED2, True)
-time.sleep(1)
-GPIO.output(conf.programmLED3, True)
-time.sleep(1)
-GPIO.output(conf.programmLED4, True)
-time.sleep(1)
-Print("Test end")
+print(helper.LEDs)

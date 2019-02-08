@@ -15,7 +15,7 @@ import conf
 import helper
 import drive
 import smbus2
-BUS=smbus2.SMBus(1)
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 

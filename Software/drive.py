@@ -1,16 +1,18 @@
 import conf
 import time
-import smbus
+import smbus2
 import RPi.GPIO as GPIO
 
 
 # [motor1P, motor1Rot, motor1Speed1, motor1Speed2],
-
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(conf.pwm0, GPIO.OUT)
 GPIO.setup(conf.pwm1, GPIO.OUT)
+
 PWML = GPIO.PWM(conf.pwm0, 1500)
 PWMR = GPIO.PWM(conf.pwm1, 1500)
-BUS=smbus.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
+
+BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
 
 def init(): 
 
@@ -19,8 +21,8 @@ def init():
     PWMR.start(100)
     for m in range(0, 5):
         setSpeedLevel(m,intspeed)
-        BUS.write_byte_data(hex(conf.motors[m][1][0]), conf.motors[m][1][1], 0xFF) # Drehrichtung auf 1
-        BUS.write_byte_data(hex(conf.motors[m][0][0]), conf.motors[m][0][1], 0xFF) # Power on
+        BUS.write_byte_data(conf.motors[m][1][0], conf.motors[m][1][1], 0xFF) # Drehrichtung auf 1
+        BUS.write_byte_data(conf.motors[m][0][0], conf.motors[m][0][1], 0xFF) # Power on
         time.sleep(0.5)
         setSpeedLevel(m, 0)
 
@@ -52,14 +54,14 @@ def speed(s):
         return (1, 1)
     return (0, 0)
 
-def setSpeedLevel(motor, level):
+def setSpeedLevel(m, level):
     intspeed = speed(level)
-    BUS.write_byte_data(hex(conf.motors[m][2][0]), conf.motors[m][0][1], hex(intspeed[0]))  # speed1
-    BUS.write_byte_data(hex(conf.motors[m][3][0]), conf.motors[m][0][1], hex(intspeed[1]))  # speed2
+    BUS.write_byte_data(conf.motors[m][2][0], conf.motors[m][0][1], intspeed[0])  # speed1
+    BUS.write_byte_data(conf.motors[m][3][0], conf.motors[m][0][1], intspeed[1])  # speed2
 
 def setMotor(m, PowerLvl=3, richtung=1):
     setSpeedLevel(m, PowerLvl)
-    BUS.write_byte_data(hex(conf.motors[m][1][0]), conf.motors[m][1][1], Hex(richtung))
+    BUS.write_byte_data(conf.motors[m][1][0], conf.motors[m][1][1], richtung)
     return
 
 def drive(seite, dutyCycle=100, PowerLvl=3, richtung=1):
@@ -70,9 +72,10 @@ def drive(seite, dutyCycle=100, PowerLvl=3, richtung=1):
     else:
         PWML.ChangeDutyCycle(dutyCycle)
 
-    for m  in range(mstart,mstart+3):
+    for m in range(mstart,mstart+3):
+        print(m)
         setSpeedLevel(m,PowerLvl)
-        BUS.write_byte_data(hex(conf.motors[m][1][0]), conf.motors[m][1][1], Hex(richtung))
+        BUS.write_byte_data(conf.motors[m][1][0], conf.motors[m][1][1], richtung)
 
     if conf.debug:
         print("Drive {} {} {} {}".format(seite, dutyCycle, PowerLvl, richtung))

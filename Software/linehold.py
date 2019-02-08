@@ -1,5 +1,6 @@
 #Linehold Sensor Module
 import conf
+import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(conf.lineVL, GPIO.IN)

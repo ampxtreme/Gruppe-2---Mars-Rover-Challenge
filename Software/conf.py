@@ -67,6 +67,7 @@ motors=[
     [motor6P, motor6Rot, motor6Speed1, motor6Speed2],
     [motor6P, motor6Rot, motor6Speed1, motor6Speed2]
     ]
+
 pwm1=23
 pwm0=26
 

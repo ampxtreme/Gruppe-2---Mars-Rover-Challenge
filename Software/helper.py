@@ -38,6 +38,6 @@ def readRotarySwitch():
 
     number=1+ d1*math.pow(2,0) + d2*math.pow(2,1) + d3*math.pow(2,2) + d4*math.pow(2,3)
 
-    if conf.debug
+    if conf.debug:
         print("Read Rotary Switch: {} ".format(number))
     return number

@@ -1,7 +1,6 @@
 #Rover XYZ Software V1.0
 #by HoT - Home of Tomorrow | project at FH Kufstein
 #2019
-
 import time
 import sys
 import os
@@ -17,6 +16,7 @@ import helper
 import drive
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
 GPIO.setup(conf.tasterRun, GPIO.IN)
 GPIO.setup(conf.tasterStop, GPIO.IN)
@@ -49,7 +49,7 @@ while (True):
             if GPIO.input(conf.tasterDig2):
                 progDigit2=1
             if GPIO.input(conf.tasterRun):
-            programmwahl=progDigit1*math.pow(2,0) + progDigit2*math.pow(2,1)+1
+                programmwahl=progDigit1*math.pow(2,0) + progDigit2*math.pow(2,1)+1
         else:
             if GPIO.input(conf.tasterRun):
                 programmwahl=helper.readRotarySwitch()

@@ -51,7 +51,7 @@ def get_x_rotation(x, y, z):
 
 def init():
     res=powerOn()
-    if conf.debug
+    if conf.debug:
         print("Cyro init: {}".format(res))
 
 def getXYZ():
@@ -59,7 +59,7 @@ def getXYZ():
     xout = read_word_2c(0x43) / 131
     yout = read_word_2c(0x45) / 131
     zout = read_word_2c(0x47) / 131
-    if(conf.debug):
+    if conf.debug:
         print("Gyro getXYZ: {} / {} / {}".format(xout,yout,zout))
     return (xout,yout,zout)
 

@@ -14,7 +14,6 @@ import t4
 import conf
 import helper
 import drive
-import smbus2
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)

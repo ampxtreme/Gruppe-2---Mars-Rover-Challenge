@@ -5,7 +5,7 @@ import smbus2
 import math
 
 
-BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
+BUS=smbus2.SMBus(0)  # bus = smbus.SMBus(0) fuer Revision 1
 
 GPIO.setmode(GPIO.BCM)
 
@@ -45,7 +45,6 @@ def convertStatusToI2c(liste):
     return summe
 
 def updateLED():
-    print(convertStatusToI2c(LEDs))
     BUS.write_byte_data(0x21, 0x03, convertStatusToI2c(LEDs))
 
 def initRotarySwitch():

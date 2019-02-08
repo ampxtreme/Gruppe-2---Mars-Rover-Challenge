@@ -26,16 +26,11 @@ if conf.pcb==False:
 else:
     helper.initRotarySwitch()
 
-GPIO.setup(conf.intLED, GPIO.OUT)
-GPIO.setup(conf.programmLED1, GPIO.OUT)
-GPIO.setup(conf.programmLED2, GPIO.OUT)
-GPIO.setup(conf.programmLED3, GPIO.OUT)
-GPIO.setup(conf.programmLED4, GPIO.OUT)
 drive.init()
 helper.initSensorSwitch()
-
-GPIO.output(conf.intLED, True)
-
+helper.initLEDs()
+helper.LEDs[7]=1
+helper.updateLED()
 progDigit1=0
 progDigit2=0
 programmwahl = 0
@@ -56,27 +51,33 @@ while (True):
 
         #Start Programm
         if programmwahl==1:
-            GPIO.output(conf.programmLED1, True)
+            helper.LEDs[0]=1
+            helper.updateLED()
             t1.start()
 
         if programmwahl == 2:
-            GPIO.output(conf.programmLED2, True)
+            helper.LEDs[1]=1
+            helper.updateLED()
+            t2.start()
 
         if programmwahl == 3:
-            GPIO.output(conf.programmLED3, True)
+            helper.LEDs[2]=1
+            helper.updateLED()
             t3.start()
 
         if programmwahl == 4:
-            GPIO.output(conf.programmLED4, True)
+            helper.LEDs[3]=1
+            helper.updateLED()
             t4.start()
        
 
         if GPIO.input(conf.tasterStop):
           
-            GPIO.output(conf.programmLED1, False)
-            GPIO.output(conf.programmLED2, False)
-            GPIO.output(conf.programmLED3, False)
-            GPIO.output(conf.programmLED4, False)
+            helper.LEDs[0]=0
+            helper.LEDs[1]=0
+            helper.LEDs[2]=0
+            helper.LEDs[3]=0
+            helper.updateLED()
             drive.stop()
             print("PROGRAMM EXIT")
             time.sleep(1)
@@ -94,10 +95,12 @@ while (True):
         progDigit2=0
         print("Keybord Interrupt")
         drive.stop()
-        GPIO.output(conf.programmLED1, False)
-        GPIO.output(conf.programmLED2, False)
-        GPIO.output(conf.programmLED3, False)
-        GPIO.output(conf.programmLED4, False)
+        helper.LEDs[0]=0
+        helper.LEDs[1]=0
+        helper.LEDs[2]=0
+        helper.LEDs[3]=0
+        helper.updateLED()
+       
         GPIO.cleanup()
         
         

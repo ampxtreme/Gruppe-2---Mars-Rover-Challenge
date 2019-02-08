@@ -1,7 +1,7 @@
 # Config Modul 02.02. 11:00
 
 debug=True
-pcb=False # PCB vorhanden
+pcb=True # PCB vorhanden
 
 #LEDs solllen über I1c
 intLED = 1
@@ -79,7 +79,7 @@ tasterStop=5  #pcb GPIO 21
 tasterRun=6   #pcb GPIO 22 //vmtl rot
 
 
-rotaryGPIOs=(27, 28, 29, 25) # GPIO READ Ports (klein nach Groß)
+rotaryGPIOs=[27, 28, 29, 25] # GPIO READ Ports (klein nach Groß)
 
 
 #SoftwareSwitch Ports Nr1

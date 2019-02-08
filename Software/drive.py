@@ -14,15 +14,27 @@ PWMR = GPIO.PWM(conf.pwm1, 1500)
 
 BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
 
+#     motor  on 0-5 power0 , power 1 Left
+BANK1=[0, 0, 0, 0, 0, 0, 0, 0]
+
+#     motor  direction 0-5, power0 , power 1 Left
+BANK2=[0, 0, 0, 0, 0, 0, 0, 0]
+
 def init(): 
 
     intspeed=1
+    BUS.write_byte_data(0x21, 0x06, 0b00000000)
+    BUS.write_byte_data(0x21, 0x02, 0b11111111)
+    
+    BUS.write_byte_data(0x20, 0x06, 0b11111111)
+    BUS.write_byte_data(0x20, 0x07, 0b11111111)
+    
     PWML.start(100)
     PWMR.start(100)
     for m in range(0, 5):
         setSpeedLevel(m,intspeed)
-        BUS.write_byte_data(conf.motors[m][1][0], conf.motors[m][1][1], 0xFF) # Drehrichtung auf 1
-        BUS.write_byte_data(conf.motors[m][0][0], conf.motors[m][0][1], 0xFF) # Power on
+        BANK[m]=1
+        i2cUpdate()
         time.sleep(0.5)
         setSpeedLevel(m, 0)
 
@@ -33,6 +45,10 @@ def test():
             setMotor(m, speed, 1)
             time.sleep(1)
         setMotor(m, 0, 0)
+        
+def i2cUpdate():
+    BUS.write_byte_data(0x20, 0x02, helper.convertStatusToI2c(BANK1))
+    BUS.write_byte_data(0x20, 0x03, helper.convertStatusToI2c(BANK2))
 
 def testpwm(speed=3):
     drive("R", 0, speed)
@@ -56,12 +72,18 @@ def speed(s):
 
 def setSpeedLevel(m, level):
     intspeed = speed(level)
-    BUS.write_byte_data(conf.motors[m][2][0], conf.motors[m][0][1], intspeed[0])  # speed1
-    BUS.write_byte_data(conf.motors[m][3][0], conf.motors[m][0][1], intspeed[1])  # speed2
+    if m <= 3
+        BANK1[6]= intspeed[0]
+        BANK1[7]= intspeed[1]
+    else
+        BANK2[6]= intspeed[0]
+        BANK2[7]= intspeed[1]
+    i2cUpdate()
 
-def setMotor(m, PowerLvl=3, richtung=1):
+def setMotor(m, PowerLvl=3, richtung=0):
     setSpeedLevel(m, PowerLvl)
-    BUS.write_byte_data(conf.motors[m][1][0], conf.motors[m][1][1], richtung)
+    BANK2[m]=richtung
+    i2cUpdate()
     return
 
 def drive(seite, dutyCycle=100, PowerLvl=3, richtung=1):
@@ -85,5 +107,6 @@ def drive(seite, dutyCycle=100, PowerLvl=3, richtung=1):
 def stop():
     for m in range(0,5):
         setSpeedLevel(m,0)
+        i2cUpdate()
     if conf.debug:
         print("Drive: stop")

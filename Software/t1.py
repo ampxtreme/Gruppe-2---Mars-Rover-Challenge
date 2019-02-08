@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(conf.tasterStop, GPIO.IN)
 
 def start():
-    while GPIO.input(conf.tasterStop) == False:
+    while GPIO.input(conf.tasterStop):
         drive.drive("L")
         drive.drive("R")
 

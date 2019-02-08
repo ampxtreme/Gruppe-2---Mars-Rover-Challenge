@@ -12,7 +12,7 @@ speedA = 100
 
 def start():
     init()
-    while GPIO.input(conf.tasterStop) == False:
+    while GPIO.input(conf.tasterStop):
         lane = linehold.line()
         
         if lane[0] == 1 and lane[1] == 1:

@@ -18,7 +18,7 @@ GPIO.setup(conf.tasterStop, GPIO.IN)
 
 def start():
       
-    while GPIO.input(conf.tasterStop) == False:
+    while GPIO.input(conf.tasterStop):
         line = cam.lineDetection()
         try:
             difference = int(line[2])

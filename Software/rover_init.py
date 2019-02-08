@@ -14,7 +14,8 @@ import t4
 import conf
 import helper
 import drive
-
+import smbus2
+BUS=smbus2.SMBus(1)
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -46,32 +47,32 @@ while (True):
             if GPIO.input(conf.tasterRun):
                 programmwahl=progDigit1*math.pow(2,0) + progDigit2*math.pow(2,1)+1
         else:
-            if GPIO.input(conf.tasterRun):
+            if GPIO.input(conf.tasterRun)==False:
                 programmwahl=helper.readRotarySwitch()
 
         #Start Programm
         if programmwahl==1:
             helper.LEDs[0]=1
             helper.updateLED()
-            t1.start()
+            #t1.start()
 
         if programmwahl == 2:
             helper.LEDs[1]=1
             helper.updateLED()
-            t2.start()
+            #t2.start()
 
         if programmwahl == 3:
             helper.LEDs[2]=1
             helper.updateLED()
-            t3.start()
+            #t3.start()
 
         if programmwahl == 4:
             helper.LEDs[3]=1
             helper.updateLED()
-            t4.start()
+            #t4.start()
        
 
-        if GPIO.input(conf.tasterStop):
+        if GPIO.input(conf.tasterStop)==False:
           
             helper.LEDs[0]=0
             helper.LEDs[1]=0

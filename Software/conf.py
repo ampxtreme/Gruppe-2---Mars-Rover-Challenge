@@ -76,10 +76,10 @@ pwm0=26
 tasterDig1=19
 tasterDig2=13
 tasterStop=5  #pcb GPIO 21
-tasterRun=6   #pcb GPIO 22 //vmtl rot
+tasterRun=6   #pcb GPIO 22 //vmtl rot  /// 5 und 6
 
 
-rotaryGPIOs=[27, 28, 29, 25] # GPIO READ Ports (klein nach Groß)
+rotaryGPIOs=[16, 20, 21, 26] # GPIO READ Ports (klein nach Groß)
 
 
 #SoftwareSwitch Ports Nr1

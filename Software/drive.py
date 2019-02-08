@@ -1,6 +1,7 @@
 import conf
 import time
 import smbus2
+import helper
 import RPi.GPIO as GPIO
 
 
@@ -33,7 +34,7 @@ def init():
     PWMR.start(100)
     for m in range(0, 5):
         setSpeedLevel(m,intspeed)
-        BANK[m]=1
+        BANK1[m]=1
         i2cUpdate()
         time.sleep(0.5)
         setSpeedLevel(m, 0)
@@ -72,10 +73,10 @@ def speed(s):
 
 def setSpeedLevel(m, level):
     intspeed = speed(level)
-    if m <= 3
+    if m <= 3:
         BANK1[6]= intspeed[0]
         BANK1[7]= intspeed[1]
-    else
+    else:
         BANK2[6]= intspeed[0]
         BANK2[7]= intspeed[1]
     i2cUpdate()

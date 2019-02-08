@@ -25,10 +25,10 @@ def init():
 
     intspeed=1
     BUS.write_byte_data(0x21, 0x06, 0b00000000)
-    BUS.write_byte_data(0x21, 0x02, 0b11111111)
+    BUS.write_byte_data(0x21, 0x02, 0b00000000)
     
-    BUS.write_byte_data(0x20, 0x06, 0b11111111)
-    BUS.write_byte_data(0x20, 0x07, 0b11111111)
+    BUS.write_byte_data(0x20, 0x06, 0b00000000)
+    BUS.write_byte_data(0x20, 0x07, 0b00000000)
     
     PWML.start(100)
     PWMR.start(100)

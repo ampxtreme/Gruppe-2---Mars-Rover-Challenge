@@ -10,10 +10,6 @@ programmLED2=20 #
 programmLED3=16 # 
 programmLED4=26 #
 
-#I2C
-i2csSDA=2
-i2cSCL=3
-
 
 i2cP1=(0x21, 1, 1)# Grüne LEDs, Programmwahl
 i2cP2=(0x21, 1, 2)

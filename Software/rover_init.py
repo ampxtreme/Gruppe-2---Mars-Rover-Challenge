@@ -27,7 +27,7 @@ else:
     helper.initRotarySwitch()
 
 drive.init()
-helper.initSensorSwitch()
+#helper.initSensorSwitch()
 helper.initLEDs()
 helper.LEDs[7]=1
 helper.updateLED()

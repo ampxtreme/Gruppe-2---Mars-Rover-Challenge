@@ -5,26 +5,20 @@ import smbus2
 import math
 
 
-BUS=smbus2.SMBus(0)  # bus = smbus.SMBus(0) fuer Revision 1
+BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
 
 GPIO.setmode(GPIO.BCM)
 
 LEDs=[0, 0, 0, 0, 0, 0, 0, 0]
 
-def sensorswitch(addr):
-
-    GPIO.output(conf.programmLED1, addr[0])
-    GPIO.output(conf.programmLED1, addr[1])
-    GPIO.output(conf.programmLED1, addr[2])
-    if conf.debug:
-        print("senorSwitch: addr {}", format(addr))
-
 def initSensorSwitch():
     GPIO.setup(conf.swSwitchGPIO1, GPIO.OUT)
-    GPIO.setup(conf.swSwitchGPIO1, GPIO.OUT)
-    GPIO.setup(conf.swSwitchGPIO1, GPIO.OUT)
+    GPIO.setup(conf.swSwitchGPIO2, GPIO.OUT)
+    GPIO.setup(conf.swSwitchGPIO3, GPIO.OUT)
     GPIO.setup(conf.swSwitchRead, GPIO.IN)
     GPIO.setup(conf.swSwitchWrite, GPIO.OUT)
+    GPIO.setup(conf.swSwitch2Read, GPIO.IN)
+    GPIO.setup(conf.swSwitch2Write, GPIO.OUT)
 
 def initLEDs():
     

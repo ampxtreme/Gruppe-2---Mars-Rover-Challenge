@@ -4,11 +4,7 @@ debug=True
 pcb=True # PCB vorhanden
 
 #LEDs solllen über I1c
-intLED = 1
-programmLED1=21 # 
-programmLED2=20 # 
-programmLED3=16 # 
-programmLED4=26 #
+
 
 
 i2cP1=(0x21, 1, 1)# Grüne LEDs, Programmwahl
@@ -64,13 +60,12 @@ motors=[
     [motor6P, motor6Rot, motor6Speed1, motor6Speed2]
     ]
 
-pwm1=23
-pwm0=26
+pwm1=13
+pwm0=12
 
 
 #Taster
-tasterDig1=19
-tasterDig2=13
+
 tasterStop=5  #pcb GPIO 21
 tasterRun=6   #pcb GPIO 22 //vmtl rot  /// 5 und 6
 
@@ -79,22 +74,20 @@ rotaryGPIOs=[16, 20, 21, 26] # GPIO READ Ports (klein nach Groß)
 
 
 #SoftwareSwitch Ports Nr1
-swSwitchGPIO1=2 # 
-swSwitchGPIO2=3 #
-swSwitchGPIO3=4 #
-swSwitchRead=23 #pcb GPIO 0
-swSwitchWrite=24 #pcb GPIO 1
+swSwitchGPIO1=23 # 
+swSwitchGPIO2=22 #
+swSwitchGPIO3=27 #
+swSwitchRead=18 #pcb GPIO 0 /// Sensor Lesen
+swSwitchWrite=17 #pcb GPIO 1
 
 addrSonicL=(1, 0, 0)
 addrSonicR=(1, 1, 1)
 addrSonicR=(1, 1, 1)
 
 #SoftwareSwitch Ports Nr2
-swSwitch2GPIO1=12 # 
-swSwitch2GPIO2=13 #
-swSwitch2GPIO3=14 #
-swSwitch2Read=10 #
-swSwitch2Write=11 #
+
+swSwitch2Read=7 #
+swSwitch2Write=8 #
 
 
 #Bildverabeitun
@@ -104,18 +97,16 @@ camColorUB = (32,255,255)
 camDistance = 15
 
 #linehold
-lineVL = 5
-lineVR = 6
+lineVL = 4
+lineVR = 11
 
 #sonic
 maxdistL = 50
 maxdistM = 40
 maxDistR = 50
 
-#free GPIO
-#7,24
 
 #serial com 
-serialTX=15
-serialRX=16
+serialTX=14
+serialRX=15
 

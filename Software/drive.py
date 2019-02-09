@@ -9,47 +9,61 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(conf.pwm0, GPIO.OUT)
 GPIO.setup(conf.pwm1, GPIO.OUT)
-
-PWML = GPIO.PWM(conf.pwm0, 1500)
-PWMR = GPIO.PWM(conf.pwm1, 1500)
+#GPIO.output(conf.pwm0,False)
+#GPIO.output(conf.pwm1,False)
+PWML = GPIO.PWM(conf.pwm0, 20)
+PWMR = GPIO.PWM(conf.pwm1, 20)
 
 BUS=smbus2.SMBus(1)  # bus = smbus.SMBus(0) fuer Revision 1
 
-#     motor  on 0-5 power0 , power 1 Left
-BANK1=[0, 0, 0, 0, 0, 0, 0, 0]
+#     je 2 Bit ein Motor
+BANK0=[1, 1, 1, 1, 1, 1, 1, 1]
 
-#     motor  direction 0-5, power0 , power 1 Left
-BANK2=[0, 0, 0, 0, 0, 0, 0, 0]
+#     motor  on 0-5 power0 , M4
+BANK1=[0, 0, 0, 0, 0, 0, 1, 1]
+
+#     motor  direction 0-5, M5
+BANK2=[0, 0, 0, 0, 0, 0, 1, 1]
+
 
 def init(): 
 
     intspeed=1
-    BUS.write_byte_data(0x21, 0x06, 0b00000000)
-    BUS.write_byte_data(0x21, 0x02, 0b00000000)
+    BUS.write_byte_data(0x21, 0x06, 0b000000000)
+    BUS.write_byte_data(0x21, 0x02, helper.convertStatusToI2c(BANK0))
     
     BUS.write_byte_data(0x20, 0x06, 0b00000000)
-    BUS.write_byte_data(0x20, 0x07, 0b00000000)
+    BUS.write_byte_data(0x20, 0x02, helper.convertStatusToI2c(BANK1))
     
-    PWML.start(100)
-    PWMR.start(100)
-    for m in range(0, 5):
-        setSpeedLevel(m,intspeed)
-        BANK1[m]=1
-        i2cUpdate()
-        time.sleep(0.5)
-        setSpeedLevel(m, 0)
+    BUS.write_byte_data(0x20, 0x07, 0b00000000)
+    BUS.write_byte_data(0x20, 0x03, helper.convertStatusToI2c(BANK2))
+    
+    PWML.start(0)
+    PWMR.start(0)
+   # for m in range(0, 5):
+    #    setSpeedLevel(m,intspeed)
+    #    BANK1[m]=0
+    #    i2cUpdate()
+    #    time.sleep(0.5)
+        #setSpeedLevel(m, 0)
 
 
 def test():
+    PWMR.ChangeDutyCycle(50)
+    PWML.ChangeDutyCycle(50)
     for m in range(0, 5):
-        for speed in range(1, 3):
-            setMotor(m, speed, 1)
-            time.sleep(1)
+        print(m)
+        setMotor(m, 3, 0)
+        time.sleep(1)
         setMotor(m, 0, 0)
+    PWMR.ChangeDutyCycle(0)
+    PWML.ChangeDutyCycle(0)
         
 def i2cUpdate():
+    BUS.write_byte_data(0x21, 0x02, helper.convertStatusToI2c(BANK0))
     BUS.write_byte_data(0x20, 0x02, helper.convertStatusToI2c(BANK1))
     BUS.write_byte_data(0x20, 0x03, helper.convertStatusToI2c(BANK2))
+    
 
 def testpwm(speed=3):
     drive("R", 0, speed)
@@ -58,27 +72,40 @@ def testpwm(speed=3):
         PWMR.ChangeDutyCycle(i)
         PWML.ChangeDutyCycle(i)
         time.sleep(0.2)
-        print("{} on Lvl {}".format(i, SpeedLevel))
+        print("{} on Lvl {}".format(i, speed))
 
 
 def speed(s):
 
     if s==1:
-        return (0, 1)
-    if s==2:
         return (1, 0)
+    if s==2:
+        return (0, 1)
     if s==3:
-        return (1, 1)
-    return (0, 0)
+        return (0, 0)
+    return (1, 1)
 
 def setSpeedLevel(m, level):
     intspeed = speed(level)
-    if m <= 3:
+    if m==0:
+        BANK0[0]= intspeed[0]
+        BANK0[1]= intspeed[1]
+    elif m==1:
+        BANK0[2]= intspeed[0]
+        BANK0[3]= intspeed[1]
+    elif m==2:
+        BANK0[4]= intspeed[0]
+        BANK0[5]= intspeed[1]
+    elif m==3:
+        BANK0[6]= intspeed[0]
+        BANK0[7]= intspeed[1]
+    elif m==4:
         BANK1[6]= intspeed[0]
-        BANK1[7]= intspeed[1]
-    else:
+        BANK1[7]= intspeed[1]  
+    elif m==5:
         BANK2[6]= intspeed[0]
         BANK2[7]= intspeed[1]
+  
     i2cUpdate()
 
 def setMotor(m, PowerLvl=3, richtung=0):
@@ -87,18 +114,18 @@ def setMotor(m, PowerLvl=3, richtung=0):
     i2cUpdate()
     return
 
-def drive(seite, dutyCycle=100, PowerLvl=3, richtung=1):
+def drive(seite, dutyCycle=100, PowerLvl=3, richtung=0):
     mstart=0;
-    if seite== "R":
-        mstart=4;
+    if seite== "L":
+        mstart=3;
         PWMR.ChangeDutyCycle(dutyCycle)
     else:
         PWML.ChangeDutyCycle(dutyCycle)
 
     for m in range(mstart,mstart+3):
-        print(m)
+        
         setSpeedLevel(m,PowerLvl)
-        BUS.write_byte_data(conf.motors[m][1][0], conf.motors[m][1][1], richtung)
+        
 
     if conf.debug:
         print("Drive {} {} {} {}".format(seite, dutyCycle, PowerLvl, richtung))

@@ -53,22 +53,22 @@ while (True):
         if programmwahl==1:
             helper.LEDs[0]=1
             helper.updateLED()
-            #t1.start()
+            t1.start()
 
         if programmwahl == 2:
             helper.LEDs[1]=1
             helper.updateLED()
-            #t2.start()
+            t2.start()
 
         if programmwahl == 3:
             helper.LEDs[2]=1
             helper.updateLED()
-            #t3.start()
+            t3.start()
 
         if programmwahl == 4:
             helper.LEDs[3]=1
             helper.updateLED()
-            #t4.start()
+            t4.start()
        
 
         if GPIO.input(conf.tasterStop)==False:

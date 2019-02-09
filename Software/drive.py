@@ -25,6 +25,7 @@ BANK1=[0, 0, 0, 0, 0, 0, 1, 1]
 #     motor  direction 0-5, M5
 BANK2=[1, 0, 1, 1, 1, 0, 1, 1]
 
+startDirection=[1, 0, 1, 1, 1, 0]
 
 def init(): 
 
@@ -110,7 +111,15 @@ def setSpeedLevel(m, level):
 
 def setMotor(m, PowerLvl=3, richtung=0):
     setSpeedLevel(m, PowerLvl)
-    BANK2[m]=richtung
+    r=startDirection[m]
+    if richtung==1 and r == 0:
+        rset=1
+    elif richtung ==1 and r ==1:
+        rest=0
+    elif richtung ==0:
+        rset=r
+
+    BANK2[m]=rset
     i2cUpdate()
     return
 

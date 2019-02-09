@@ -5,10 +5,10 @@ import RPi.GPIO as GPIO
 from simple_pid import PID
 import drive
 
-Kp = 1
-Ki = 0.1
-Kd = 0.05
-setpoint = 1
+Kp = 5
+Ki = 0
+Kd = 0
+setpoint = 0
 
 pid = PID(Kp, Ki, Kd, setpoint)
 pid.output_limits = (0, 100)
@@ -25,29 +25,15 @@ def start():
         except TypeError:
             continue
         control = pid(difference)
-        print(control)
-        control2=control
 
-        if control >= 100:
-            control2=100
-
-        delta = 100-control
-        
-        if delta <= 0:
-            delta = 0
-        
-        print(control2)
-        print(delta)
-    
-        drive.drive("L", control2)
-        drive.drive("R", delta)
+        if difference>=0:
+            
+            drive.drive("R",50 -control/2)
+            drive.drive("L",50 +control/2)
+        else:
+            drive.drive("L",50 -control/2)
+            drive.drive("R",50 +control/2) 
 
         if conf.debug:
             print ("T3 Control:{}, {}". format(control, delta))
         
-        
-def init():
-    return
-def Texit():
-    drive.stop()
-    return

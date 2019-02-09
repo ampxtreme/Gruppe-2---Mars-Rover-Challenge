@@ -11,7 +11,7 @@ speedI = 50
 speedA = 100
 
 def start():
-    init()
+
     while GPIO.input(conf.tasterStop):
         lane = linehold.line()
         

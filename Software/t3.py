@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 from simple_pid import PID
 import drive
 
-Kp = 5
+Kp = 2
 Ki = 0
 Kd = 0
 setpoint = 0
@@ -35,5 +35,5 @@ def start():
             drive.drive("R",50 +control/2) 
 
         if conf.debug:
-            print ("T3 Control:{}, {}". format(control, delta))
+            print ("T3 Control:{}". format(control))
         

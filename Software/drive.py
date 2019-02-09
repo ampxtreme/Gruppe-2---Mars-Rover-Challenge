@@ -23,9 +23,9 @@ BANK0=[1, 1, 1, 1, 1, 1, 1, 1]
 BANK1=[0, 0, 0, 0, 0, 0, 1, 1]
 
 #     motor  direction 0-5, M5
-BANK2=[1, 0, 1, 1, 1, 0, 1, 1]
+BANK2=[1, 0, 1, 0, 1, 0, 1, 1]
 
-startDirection=[1, 0, 1, 1, 1, 0]
+startDirection=[1, 0, 1, 0, 1, 0]
 
 def init(): 
 
@@ -142,7 +142,7 @@ def drive(seite, dutyCycle=100, PowerLvl=3, richtung=0):
 
 
 def stop():
-    for m in range(0,5):
+    for m in range(0,6):
         setSpeedLevel(m,0)
         i2cUpdate()
     if conf.debug:

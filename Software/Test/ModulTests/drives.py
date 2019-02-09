@@ -25,7 +25,7 @@ print(drive.BANK0, drive.BANK1, drive.BANK2)
 #drive.drive("L", 100,3)
 #drive.drive("R", 50,3)
 # mortot, speed lvl, richtung 0,1
-#drive.setMotor(0, 2, 0 )
+#drive.setMotor(5, 2, 0 )
 
 
 
@@ -33,8 +33,8 @@ print(drive.BANK0, drive.BANK1, drive.BANK2)
 #drive.testpwm()
 
 drive.test()
-
-drive.testpwm()
+#drive.set
+#drive.testpwm()
 
 time.sleep(4)
 #leftTurn(1)

@@ -23,7 +23,7 @@ BANK0=[1, 1, 1, 1, 1, 1, 1, 1]
 BANK1=[0, 0, 0, 0, 0, 0, 1, 1]
 
 #     motor  direction 0-5, M5
-BANK2=[0, 0, 0, 0, 0, 0, 1, 1]
+BANK2=[1, 0, 1, 1, 1, 0, 1, 1]
 
 
 def init(): 
@@ -51,9 +51,9 @@ def init():
 def test():
     PWMR.ChangeDutyCycle(50)
     PWML.ChangeDutyCycle(50)
-    for m in range(0, 5):
-        print(m)
+    for m in range(0, 6):
         setMotor(m, 3, 0)
+        print(m, BANK0,BANK1,BANK2)
         time.sleep(1)
         setMotor(m, 0, 0)
     PWMR.ChangeDutyCycle(0)

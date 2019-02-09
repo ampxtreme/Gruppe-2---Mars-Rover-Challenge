@@ -19,6 +19,11 @@ def initSensorSwitch():
     GPIO.setup(conf.swSwitchWrite, GPIO.OUT)
     GPIO.setup(conf.swSwitch2Read, GPIO.IN)
     GPIO.setup(conf.swSwitch2Write, GPIO.OUT)
+    
+def sensorswitch(addr):
+    GPIO.output(addr[0])
+    GPIO.output(addr[1])
+    GPIO.output(addr[2])
 
 def initLEDs():
     

@@ -73,18 +73,21 @@ tasterRun=6   #pcb GPIO 22 //vmtl rot  /// 5 und 6
 rotaryGPIOs=[16, 20, 21, 26] # GPIO READ Ports (klein nach Groß)
 
 
-#SoftwareSwitch Ports Nr1
+#SoftwareSwitch Ports Nr0
 swSwitchGPIO1=23 # 
 swSwitchGPIO2=22 #
 swSwitchGPIO3=27 #
 swSwitchRead=18 #pcb GPIO 0 /// Sensor Lesen
 swSwitchWrite=17 #pcb GPIO 1
 
-addrSonicL=(1, 0, 0)
-addrSonicR=(1, 1, 1)
-addrSonicR=(1, 1, 1)
+addrSonicL=(0, 1, 0)#2
+addrSonicM=(1, 0, 0)#1
+addrSonicR=(0, 0, 0)#0
 
-#SoftwareSwitch Ports Nr2
+addrLineL=(1, 1, 1)#7
+addrLineR=(1, 0, 1)#5
+
+#SoftwareSwitch Ports Nr1
 
 swSwitch2Read=7 #
 swSwitch2Write=8 #
